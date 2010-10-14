@@ -19,7 +19,7 @@ esac
 # Set basic variables
 pushd ${SCRIPT_DIR}/.. 2>/dev/null
 BASE=${2:-$(pwd)}
-JARNAME=$(basename $BASE)
+APPNAME=$(basename $BASE)
 popd 2>/dev/null
 BIN=$BASE/bin
 CONF=$BASE/conf
@@ -74,23 +74,23 @@ _compile() {
 _jar() {
 	_compile
 	echo "Creating jar"
-	rm $LIB/vpm.jar
+	rm $LIB/${APPNAME}.jar
 	cd $CLASSES
-	jar cf $LIB/vpm.jar *
+	jar cf $LIB/${APPNAME}.jar *
 }
 
 _dist() {
 	_clean && _jar
 	if [ $? -eq 0 ]; then
 		echo "Creating distribution"
-		t=t$$/vpm
+		t=t$$/${APPNAME}
 		mkdir -p $t
 		cd $t
 		mkdir lib && cp -R $LIB/*.jar lib
-		mkdir conf && cp $CONF/vpm*.properties conf
+		mkdir conf && cp $CONF/* conf
 		cp $BIN/runme* .
 		cd ..
-		zip -rm $BASE/dist.zip vpm
+		zip -rm $BASE/dist.zip ${APPNAME}
 		cd ..
 		rm -rf $t
 	fi
