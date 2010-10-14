@@ -76,14 +76,14 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>19</integer>
+				<integer>26</integer>
 				<key>line</key>
-				<integer>77</integer>
+				<integer>122</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>64</integer>
+			<integer>114</integer>
 		</dict>
 	</dict>
 	<key>openDocuments</key>
@@ -136,53 +136,7 @@
 			<key>isExpanded</key>
 			<true/>
 			<key>subItems</key>
-			<dict>
-				<key>com</key>
-				<dict>
-					<key>isExpanded</key>
-					<true/>
-					<key>subItems</key>
-					<dict>
-						<key>bensmann</key>
-						<dict>
-							<key>isExpanded</key>
-							<true/>
-							<key>subItems</key>
-							<dict>
-								<key>grootils</key>
-								<dict>
-									<key>isExpanded</key>
-									<true/>
-									<key>subItems</key>
-									<dict>
-										<key>cifs</key>
-										<dict>
-											<key>isExpanded</key>
-											<true/>
-											<key>subItems</key>
-											<dict/>
-										</dict>
-										<key>swing</key>
-										<dict>
-											<key>isExpanded</key>
-											<true/>
-											<key>subItems</key>
-											<dict/>
-										</dict>
-										<key>xml</key>
-										<dict>
-											<key>isExpanded</key>
-											<true/>
-											<key>subItems</key>
-											<dict/>
-										</dict>
-									</dict>
-								</dict>
-							</dict>
-						</dict>
-					</dict>
-				</dict>
-			</dict>
+			<dict/>
 		</dict>
 	</dict>
 	<key>windowFrame</key>
