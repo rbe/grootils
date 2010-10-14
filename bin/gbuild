@@ -28,26 +28,41 @@ LIB=$BASE/lib
 CLASSES=$BASE/classes
 DIST=$BASE/dist
 
+#
+# Create needed directories.
+#
 _create_dirs() {
 	echo "Creating directories in $BASE"
 	mkdir -p $BIN $CONF $SRC $LIB $CLASSES $DIST
 }
 
+#
+# Init Git distributed version control system.
+#
 _init_git() {
 	echo "Initializing Git for $BASE"
 	cd $BASE
 	git init
 }
 
+#
+# Make classpath.
+#
 _make_cp() {
+	# Copy Groovy embedded to lib
 	cp $GROOVY_HOME/embeddable/groovy-all-*.jar $LIB
+	# Create classpath
 	for lib in $LIB/*.jar
 	do
 		CP="$CP:$lib"
 	done
+	# Skip first colon
 	echo $CP | cut -c 2-
 }
 
+#
+# Cleanup working directories.
+#
 _clean() {
 	echo "Cleaning up..."
 	_create_dirs
@@ -55,10 +70,15 @@ _clean() {
 	rm -rf $DIST/*
 }
 
+#
+# Compile classes: Java and Groovy.
+#
 _compile() {
 	echo "Compiling classes..."
 	cd $SRC
+	# Java
 	find . -type f -name \*.java -print0 | xargs -0 javac -d $CLASSES -cp "$(_make_cp)"
+	# Groovy
 	find . -type f -name \*.groovy -print0 | xargs -0 groovyc -d $CLASSES -cp "$CLASSES:$(_make_cp)"
 	# Resources folder?
 	if [ -d resources ]; then
@@ -66,31 +86,45 @@ _compile() {
 	fi
 }
 
+#
+# Create a JAR.
+#
 _jar() {
+	# First compile
 	_compile
+	# Create jar
 	echo "Creating jar"
 	rm $LIB/${APPNAME}.jar
 	cd $CLASSES
 	jar cf $LIB/${APPNAME}.jar *
 }
 
+#
+# Make a distribution.
+#
 _dist() {
 	_clean && _jar
 	if [ $? -eq 0 ]; then
 		echo "Creating distribution"
+		# Temporary directory
 		t=t$$/${APPNAME}
 		mkdir -p $t
 		cd $t
+		# Copy libs and conf
 		mkdir lib && cp -R $LIB/*.jar lib
 		mkdir conf && cp $CONF/* conf
+		# Copy runme
 		cp $BIN/runme* .
 		cd ..
+		# Make ZIP archive
 		zip -rm $BASE/dist.zip ${APPNAME}
 		cd ..
+		# Delete temporary directory
 		rm -rf $t
 	fi
 }
 
+# Check command line parameter
 case "$1" in
 	setup)
 		_create_dirs
