@@ -85,8 +85,8 @@ _compile() {
 	echo "Compiling Java sources"
 	find . -type f -name \*.java -print0 | xargs -0 javac -d ${CLASSES} -cp "${cp}"
 	# Groovy
-	find . -type f -name \*.groovy -print0 | xargs -0 groovyc -d ${CLASSES} -cp "$CLASSES:${cp}"
 	echo "Compiling Groovy sources with Java classes in classpath"
+	find . -type f -name \*.groovy -print0 | xargs -0 groovyc -d ${CLASSES} -cp "${CLASSES}:${cp}"
 	# Resources folder?
 	if [ -d resources ]; then
 		echo "Copying contents of resources folder into classes/"
