@@ -28,11 +28,6 @@ LIB=$BASE/lib
 CLASSES=$BASE/classes
 DIST=$BASE/dist
 
-if [ -z "$CLASSES" ]; then
-	echo "No classes directory!"
-	exit 1
-fi
-
 _create_dirs() {
 	echo "Creating directories in $BASE"
 	mkdir -p $BIN $CONF $SRC $LIB $CLASSES $DIST
