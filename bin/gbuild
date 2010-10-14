@@ -65,8 +65,10 @@ _compile() {
 	cd $SRC
 	find . -type f -name \*.java -print0 | xargs -0 javac -d $CLASSES -cp "$(_make_cp)"
 	find . -type f -name \*.groovy -print0 | xargs -0 groovyc -d $CLASSES -cp "$CLASSES:$(_make_cp)"
-	mkdir -p com/bensmann/uka/vpm/resources
-	cp -R com/bensmann/uka/vpm/resources ../classes/com/bensmann/uka/vpm
+	# Resources folder?
+	if [ -d resources ]; then
+		cp -R resources/* ../classes
+	fi
 }
 
 _jar() {
