@@ -75,7 +75,8 @@ _clean() {
 # Compile classes: Java and Groovy.
 #
 _compile() {
-	_create_dirs
+	# At first cleanup
+	_clean
 	echo "Compiling classes..."
 	# Classpath
 	cp=$(_make_cp)
