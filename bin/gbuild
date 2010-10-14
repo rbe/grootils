@@ -86,13 +86,16 @@ _compile() {
 	# Java
 	echo "Compiling Java sources"
 	find java -type f -name \*.java -print0 | xargs -0 javac -d ${CLASSES} -cp "${cp}"
+	echo "done"
 	# Groovy
 	echo "Compiling Groovy sources with Java classes in classpath"
 	find groovy -type f -name \*.groovy -print0 | xargs -0 groovyc -d ${CLASSES} -cp "${CLASSES}:${cp}"
+	echo "done"
 	# Resources folder?
 	if [ -d resources ]; then
 		echo "Copying contents of resources folder into classes/"
 		cp -R resources/* ../classes
+		echo "done"
 	fi
 }
 
@@ -108,6 +111,24 @@ _jar() {
 	rm ${j} 2>/dev/null
 	cd ${CLASSES}
 	jar cf ${j} *
+	echo "done"
+}
+
+#
+# Create a jar including all libraries.
+#
+_uberjar() {
+	_jar
+	j=${DIST}/${APPNAME}-standalone.jar
+	echo "Creating uberjar in ${j}"
+	rm ${j} 2>/dev/null
+	cd ${CLASSES}
+	for lib in ${LIB}/*.jar
+	do
+		jar xf ${lib}
+	done
+	jar cf ${j} *
+	echo "done"
 }
 
 #
@@ -150,6 +171,9 @@ case "$1" in
 	;;
 	jar)
 		_jar
+	;;
+	uberjar)
+		_uberjar
 	;;
 	dist)
 		_dist
