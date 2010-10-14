@@ -75,6 +75,7 @@ _clean() {
 # Compile classes: Java and Groovy.
 #
 _compile() {
+	_create_dirs
 	echo "Compiling classes..."
 	cd $SRC
 	# Classpath
