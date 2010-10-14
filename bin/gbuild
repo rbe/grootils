@@ -9,7 +9,18 @@
 # Created by: rbe
 #
 
+# Determine script directory
+case $0 in
+	./*) SCRIPT_DIR=${PWD} ;;
+	/*) SCRIPT_DIR=${0%/*} ;;
+	*/*) SCRIPT_DIR=${PWD}/${0%/*} ;;
+	*) SCRIPT_DIR=${PWD} ;;
+esac
+# Set basic variables
+pushd ${SCRIPT_DIR}/.. 2>/dev/null
 BASE=${2:-$(pwd)}
+JARNAME=$(basename $BASE)
+popd 2>/dev/null
 BIN=$BASE/bin
 CONF=$BASE/conf
 SRC=$BASE/src
