@@ -19,29 +19,29 @@ esac
 # Set basic variables
 pushd ${SCRIPT_DIR}/.. 2>/dev/null
 BASE=${2:-$(pwd)}
-APPNAME=$(basename $BASE)
-popd 2>/dev/null
-BIN=$BASE/bin
-CONF=$BASE/conf
-SRC=$BASE/src
-LIB=$BASE/lib
-CLASSES=$BASE/classes
-DIST=$BASE/dist
+APPNAME=$(basename ${BASE})
+popd 2>/dev/null 1>&2
+BIN=${BASE}/bin
+CONF=${BASE}/conf
+SRC=${BASE}/src
+LIB=${BASE}/lib
+CLASSES=${BASE}/classes
+DIST=${BASE}/dist
 
 #
 # Create needed directories.
 #
 _create_dirs() {
-	echo "Creating directories in $BASE"
-	mkdir -p $BIN $CONF $SRC $LIB $CLASSES $DIST
+	echo "Creating directories in ${BASE}"
+	mkdir -p ${BIN} ${CONF} ${SRC} ${LIB} ${CLASSES} ${DIST}
 }
 
 #
 # Init Git distributed version control system.
 #
 _init_git() {
-	echo "Initializing Git for $BASE"
-	cd $BASE
+	echo "Initializing Git for ${BASE}"
+	cd ${BASE}
 	git init
 }
 
@@ -50,14 +50,14 @@ _init_git() {
 #
 _make_cp() {
 	# Copy Groovy embedded to lib
-	cp $GROOVY_HOME/embeddable/groovy-all-*.jar $LIB
+	cp ${GROOVY_HOME}/embeddable/groovy-all-*.jar ${LIB}
 	# Create classpath
-	for lib in $LIB/*.jar
+	for lib in ${LIB}/*.jar
 	do
-		CP="$CP:$lib"
+		CP="${CP}:${lib}"
 	done
 	# Skip first colon
-	echo $CP | cut -c 2-
+	echo ${CP} | cut -c 2-
 }
 
 #
@@ -66,8 +66,8 @@ _make_cp() {
 _clean() {
 	echo "Cleaning up..."
 	_create_dirs
-	rm -rf $CLASSES/*
-	rm -rf $DIST/*
+	rm -rf ${CLASSES}/*
+	rm -rf ${DIST}/*
 }
 
 #
@@ -76,10 +76,13 @@ _clean() {
 _compile() {
 	echo "Compiling classes..."
 	cd $SRC
+	# Classpath
+	cp=$(_make_cp)
+	echo "Classpath: ${cp}"
 	# Java
-	find . -type f -name \*.java -print0 | xargs -0 javac -d $CLASSES -cp "$(_make_cp)"
+	find . -type f -name \*.java -print0 | xargs -0 javac -d ${CLASSES} -cp "${cp}"
 	# Groovy
-	find . -type f -name \*.groovy -print0 | xargs -0 groovyc -d $CLASSES -cp "$CLASSES:$(_make_cp)"
+	find . -type f -name \*.groovy -print0 | xargs -0 groovyc -d ${CLASSES} -cp "$CLASSES:${cp}"
 	# Resources folder?
 	if [ -d resources ]; then
 		cp -R resources/* ../classes
@@ -93,10 +96,11 @@ _jar() {
 	# First compile
 	_compile
 	# Create jar
-	echo "Creating jar"
-	rm $LIB/${APPNAME}.jar
-	cd $CLASSES
-	jar cf $LIB/${APPNAME}.jar *
+	j=${DIST}/${APPNAME}.jar
+	echo "Creating JAR in ${j}"
+	rm ${j}
+	cd ${CLASSES}
+	jar cf ${j} *
 }
 
 #
@@ -105,19 +109,20 @@ _jar() {
 _dist() {
 	_clean && _jar
 	if [ $? -eq 0 ]; then
-		echo "Creating distribution"
+		d=${BASE}/${APPNAME}.zip
+		echo "Creating distribution in ${d}"
 		# Temporary directory
 		t=t$$/${APPNAME}
 		mkdir -p $t
 		cd $t
 		# Copy libs and conf
-		mkdir lib && cp -R $LIB/*.jar lib
-		mkdir conf && cp $CONF/* conf
+		mkdir lib && cp -R ${LIB}/*.jar lib && cp -R ${DIST}/*.jar lib
+		mkdir conf && cp ${CONF}/* conf
 		# Copy runme
-		cp $BIN/runme* .
+		cp ${BIN}/runme* .
 		cd ..
 		# Make ZIP archive
-		zip -rm $BASE/dist.zip ${APPNAME}
+		zip -rm ${d} ${APPNAME}
 		cd ..
 		# Delete temporary directory
 		rm -rf $t
@@ -145,9 +150,9 @@ case "$1" in
 	run)
 		$0 jar
 		cp="$(_make_cp lib)"
-		echo "Classpath: $cp"
+		echo "Classpath: ${cp}"
 		# TODO
-		java -cp $cp Main
+		java -cp ${cp} Main
 	;;
 	*)
 		echo "usage: $0 { setup | clean | compile | jar | dist | run } $2"
