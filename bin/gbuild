@@ -17,7 +17,7 @@ case $0 in
 	*) SCRIPT_DIR=${PWD} ;;
 esac
 # Set basic variables
-pushd ${SCRIPT_DIR}/.. 2>/dev/null
+pushd ${SCRIPT_DIR}/.. 2>/dev/null 1>&2
 BASE=${2:-$(pwd)}
 APPNAME=$(basename ${BASE})
 popd 2>/dev/null 1>&2
