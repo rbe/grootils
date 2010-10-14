@@ -50,7 +50,7 @@ _init_git() {
 #
 _make_cp() {
 	# Delete (potentially old version) and copy Groovy embedded jar
-	rm ${LIB}/groovy-all-*.jar
+	rm ${LIB}/groovy-all-*.jar 2>/dev/null
 	cp ${GROOVY_HOME}/embeddable/groovy-all-*.jar ${LIB}
 	# Create classpath
 	for lib in ${LIB}/*.jar
@@ -67,8 +67,8 @@ _make_cp() {
 _clean() {
 	echo "Cleaning up..."
 	_create_dirs
-	rm -rf ${CLASSES}/*
-	rm -rf ${DIST}/*
+	rm -rf ${CLASSES}/* 2>/dev/null
+	rm -rf ${DIST}/* 2>/dev/null
 }
 
 #
@@ -100,7 +100,7 @@ _jar() {
 	# Create jar
 	j=${DIST}/${APPNAME}.jar
 	echo "Creating JAR in ${j}"
-	rm ${j}
+	rm ${j} 2>/dev/null
 	cd ${CLASSES}
 	jar cf ${j} *
 }
@@ -127,7 +127,7 @@ _dist() {
 		zip -rm ${d} ${APPNAME}
 		cd ..
 		# Delete temporary directory
-		rm -rf $t
+		rm -rf $t 2>/dev/null
 	fi
 }
 
