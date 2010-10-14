@@ -44,9 +44,8 @@ _make_cp() {
 
 _clean() {
 	echo "Cleaning up..."
-	mkdir -p $CLASSES
+	_create_dirs
 	rm -rf $CLASSES/*
-	mkdir -p $DIST
 	rm -rf $DIST/*
 }
 
