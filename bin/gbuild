@@ -77,16 +77,17 @@ _clean() {
 _compile() {
 	_create_dirs
 	echo "Compiling classes..."
-	cd $SRC
 	# Classpath
 	cp=$(_make_cp)
 	echo "Classpath: ${cp}"
+	# Go to sources
+	cd $SRC
 	# Java
 	echo "Compiling Java sources"
-	find . -type f -name \*.java -print0 | xargs -0 javac -d ${CLASSES} -cp "${cp}"
+	find java -type f -name \*.java -print0 | xargs -0 javac -d ${CLASSES} -cp "${cp}"
 	# Groovy
 	echo "Compiling Groovy sources with Java classes in classpath"
-	find . -type f -name \*.groovy -print0 | xargs -0 groovyc -d ${CLASSES} -cp "${CLASSES}:${cp}"
+	find groovy -type f -name \*.groovy -print0 | xargs -0 groovyc -d ${CLASSES} -cp "${CLASSES}:${cp}"
 	# Resources folder?
 	if [ -d resources ]; then
 		echo "Copying contents of resources folder into classes/"
