@@ -49,7 +49,8 @@ _init_git() {
 # Make classpath.
 #
 _make_cp() {
-	# Copy Groovy embedded to lib
+	# Delete (potentially old version) and copy Groovy embedded jar
+	rm ${LIB}/groovy-all-*.jar
 	cp ${GROOVY_HOME}/embeddable/groovy-all-*.jar ${LIB}
 	# Create classpath
 	for lib in ${LIB}/*.jar
