@@ -2,8 +2,8 @@
  * /Users/rbe/project/grootils/src/com/bensmann/grootils/MapHelper.groovy
  * 
  * Copyright (C) 2010 Informationssysteme Ralf Bensmann.
- * Alle Rechte vorbehalten. Nutzungslizenz siehe http://www.bensmann.com/license_de.html
- * All Rights Reserved. Use is subject to license terms, see http://www.bensmann.com/license_en.html
+ * Nutzungslizenz siehe http://www.bensmann.com/BPL_v10_de.html
+ * Use is subject to license terms, see http://www.bensmann.com/BPL_v10_en.html
  * 
  * Created by: rbe
  */
@@ -15,7 +15,7 @@ package com.bensmann.grootils
 class MapHelper {
 	
 	/**
-	 * Invert a map.
+	 * Invert a map: change key: value to value: key.
 	 * Taken from http://jira.codehaus.org/browse/GROOVY-4294
 	 * http://jira.codehaus.org/secure/attachment/49994/patchfile.txt
 	 */
@@ -34,10 +34,7 @@ class MapHelper {
 	 */
 	def static addMapPropertyChangeListener = { name, map, closure = null ->
 		// This map
-		//println "addMapPropertyChangeListener: adding PropertyChangeListener for ${name}"
 		map.addPropertyChangeListener({ evt ->
-				// TODO print if debug flag is set
-				//println "C! ${name}.${evt.propertyName}: ${evt.oldValue?.dump()} -> ${evt.newValue?.dump()}"
 				if (closure) closure(evt)
 			} as java.beans.PropertyChangeListener)
 		// All nested maps
