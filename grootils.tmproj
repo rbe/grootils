@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>bin/gbuild</string>
+	<string>src/groovy/com/bensmann/grootils/FileHelper.groovy</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -17,8 +17,6 @@
 			<string>bin</string>
 		</dict>
 		<dict>
-			<key>expanded</key>
-			<true/>
 			<key>name</key>
 			<string>classes</string>
 			<key>regexFolderFilter</key>
@@ -37,8 +35,6 @@
 			<string>conf</string>
 		</dict>
 		<dict>
-			<key>expanded</key>
-			<true/>
 			<key>name</key>
 			<string>dist</string>
 			<key>regexFolderFilter</key>
@@ -47,8 +43,6 @@
 			<string>dist</string>
 		</dict>
 		<dict>
-			<key>expanded</key>
-			<true/>
 			<key>name</key>
 			<string>lib</string>
 			<key>regexFolderFilter</key>
@@ -76,19 +70,64 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>26</integer>
+				<integer>0</integer>
 				<key>line</key>
-				<integer>122</integer>
+				<integer>0</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>114</integer>
+			<integer>38</integer>
+		</dict>
+		<key>src/groovy/com/bensmann/grootils/FileHelper.groovy</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>1</integer>
+				<key>line</key>
+				<integer>12</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>17</integer>
+		</dict>
+		<key>src/groovy/com/bensmann/grootils/MapHelper.groovy</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>48</integer>
+		</dict>
+		<key>src/groovy/com/bensmann/grootils/ObjectHelper.groovy</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>4</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
 		</dict>
 	</dict>
 	<key>openDocuments</key>
 	<array>
 		<string>bin/gbuild</string>
+		<string>src/groovy/com/bensmann/grootils/FileHelper.groovy</string>
+		<string>src/groovy/com/bensmann/grootils/MapHelper.groovy</string>
+		<string>src/groovy/com/bensmann/grootils/ObjectHelper.groovy</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<false/>
@@ -103,28 +142,7 @@
 			<key>subItems</key>
 			<dict/>
 		</dict>
-		<key>classes</key>
-		<dict>
-			<key>isExpanded</key>
-			<true/>
-			<key>subItems</key>
-			<dict/>
-		</dict>
 		<key>conf</key>
-		<dict>
-			<key>isExpanded</key>
-			<true/>
-			<key>subItems</key>
-			<dict/>
-		</dict>
-		<key>dist</key>
-		<dict>
-			<key>isExpanded</key>
-			<true/>
-			<key>subItems</key>
-			<dict/>
-		</dict>
-		<key>lib</key>
 		<dict>
 			<key>isExpanded</key>
 			<true/>
@@ -136,10 +154,50 @@
 			<key>isExpanded</key>
 			<true/>
 			<key>subItems</key>
-			<dict/>
+			<dict>
+				<key>groovy</key>
+				<dict>
+					<key>isExpanded</key>
+					<true/>
+					<key>subItems</key>
+					<dict>
+						<key>com</key>
+						<dict>
+							<key>isExpanded</key>
+							<true/>
+							<key>subItems</key>
+							<dict>
+								<key>bensmann</key>
+								<dict>
+									<key>isExpanded</key>
+									<true/>
+									<key>subItems</key>
+									<dict>
+										<key>grootils</key>
+										<dict>
+											<key>isExpanded</key>
+											<true/>
+											<key>subItems</key>
+											<dict>
+												<key>cifs</key>
+												<dict>
+													<key>isExpanded</key>
+													<true/>
+													<key>subItems</key>
+													<dict/>
+												</dict>
+											</dict>
+										</dict>
+									</dict>
+								</dict>
+							</dict>
+						</dict>
+					</dict>
+				</dict>
+			</dict>
 		</dict>
 	</dict>
 	<key>windowFrame</key>
-	<string>{{0, 55}, {1440, 823}}</string>
+	<string>{{1440, -300}, {1920, 1200}}</string>
 </dict>
 </plist>
