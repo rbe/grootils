@@ -1,3 +1,12 @@
+<!--
+  ~ Grootils
+  ~ Copyright (C) 2005-2010 Informationssysteme Ralf Bensmann.
+  ~ Copyright (C) 2011-2012 art of coding UG (haftungsbeschränkt).
+  ~
+  ~ Alle Rechte vorbehalten. Nutzung unterliegt Lizenzbedingungen.
+  ~ All rights reserved. Use is subject to license terms.
+  -->
+
 <!-- Portions (C) International Organization for Standardization 1986
      Permission to copy in any form is granted for use with
      conforming SGML systems and applications as defined in
@@ -22,9 +31,7 @@
 <!ENTITY sect   "&#167;"> <!-- section sign, U+00A7 ISOnum -->
 <!ENTITY uml    "&#168;"> <!-- diaeresis = spacing diaeresis,
                                   U+00A8 ISOdia -->
-<!ENTITY copy   "&#169;"> <!-- copyright sign, U+00A9 ISOnum -->
-<!ENTITY ordf   "&#170;"> <!-- feminine ordinal indicator, U+00AA ISOnum -->
-<!ENTITY laquo  "&#171;"> <!-- left-pointing double angle quotation mark
+<!ENTITY copy   "&#169;"> <!ENTITY laquo  "&#171;"> <!-- left-pointing double angle quotation mark
                                   = left pointing guillemet, U+00AB ISOnum -->
 <!ENTITY not    "&#172;"> <!-- not sign = angled dash,
                                   U+00AC ISOnum -->
